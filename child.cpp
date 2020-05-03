@@ -49,11 +49,11 @@ void createdatafilm(list_child &LC)
     cout << "==================== Masukkan Data Film ====================" << endl;
     cout << "Nama Film            : "; cin.ignore();
     getline(cin, namafilm);
-    cout << "Tanggal Terbit       : "; cin.ignore();
+    cout << "Tanggal Terbit       : ";
     getline(cin, tanggalterbit);
-    cout << "Durasi Film          : "; cin.ignore();
+    cout << "Durasi Film          : ";
     getline(cin, durasi);
-    cout << "Rating Film          : "; cin.ignore();
+    cout << "Rating Film          : ";
     cin >> rating;
     cout << endl;
 
