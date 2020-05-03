@@ -57,10 +57,10 @@ void createdataartis(list_parent &LP){
 void delete_artis(list_parent &LP, adr_parent &p){
     adr_parent q = first(LP);
 
-    if(p = first(LP)){
+    if(first(LP) == p){
         first(LP) = next(first(LP));
         next(p) = NULL;
-    } else if(next(p) = NULL){
+    } else if(next(p) == NULL){
         while(next(q) != p){
             q = next(q);
         }
@@ -127,7 +127,9 @@ void printInfoMostMaleActor(list_parent LP){
             p = next(p);
         }
 
-        if(infoArtis(maxdata).jeniskelamin == 'L'){
+        if(infoArtis(maxdata).data == 0){
+            cout << "Data Tidak Ada" << endl;
+        }else if(infoArtis(maxdata).jeniskelamin == 'L'){
             cout << "============ Top Male Actor ============" << endl << endl;
             cout << "Nama                       : " << infoArtis(maxdata).nama << endl;
             cout << "Jenis Kelamin              : " << infoArtis(maxdata).jeniskelamin << endl;
@@ -155,7 +157,9 @@ void printInfoMostFemaleActor(list_parent LP){
             p = next(p);
         }
 
-        if(infoArtis(maxdata).jeniskelamin == 'P'){
+        if(infoArtis(maxdata).data == 0){
+            cout << "Data Tidak Ada" << endl;
+        }else if(infoArtis(maxdata).jeniskelamin == 'P'){
             cout << "============ Top Female Actor ============" << endl << endl;
             cout << "Nama                       : " << infoArtis(maxdata).nama << endl;
             cout << "Jenis Kelamin              : " << infoArtis(maxdata).jeniskelamin << endl;
