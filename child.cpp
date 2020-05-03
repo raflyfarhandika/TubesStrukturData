@@ -71,20 +71,20 @@ void delete_film(list_child &LC, adr_child &P)
 {
     adr_child q = first(LC);
 
-    if(next(P) = P){
+    if(next(P) == P){
         first(LC) = NULL;
-    } else if(next(P) = first(LC)){
+    } else if(next(P) == first(LC)){
         while(next(q) != P){
             q = next(q);
         }
         next(q) = first(LC);
         next(P) = NULL;
-    } else if(next(next(first(LC))) = first(LC)){
+    } else if(P == first(LC)){
         while(next(q) != first(LC)){
             q = next(q);
         }
-        first(LC) = q;
-        next(q) = q;
+        first(LC) = next(first(LC));
+        next(q) = first(LC);
         next(P) = NULL;
     } else {
         while(next(q) != P){
