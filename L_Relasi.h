@@ -37,8 +37,8 @@ void createdatarelasi(list_parent LP, list_child LC, list_relasi &LR);
 void deleterelasi(list_relasi &LR, adr_relasi &P);               //delete berdasarkan data yang di cari
 adr_relasi find_relasi(list_relasi LR, list_parent LP, list_child LC, string nama_artis, string nama_film);
 //void deletedatarelasi(list_relasi &LR, list_child LC, list_parent LP);
-void deletedataartis(list_parent &LP, list_relasi &LR);
-void deletedatafilm(list_child &LC, list_relasi &LR);
+void deletedataartis(list_parent &LP, list_relasi &LR, list_child LC);
+void deletedatafilm(list_child &LC, list_relasi &LR, list_parent LP);
 void printInfo_relasi(list_relasi LR);
 void printInfo_relasiAll(list_relasi LR, list_parent LP, list_child LC);
 void printInfoFilmByActor(list_relasi LR, list_parent LP, list_child LC, string namaartis);
