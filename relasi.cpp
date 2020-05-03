@@ -45,7 +45,7 @@ void createdatarelasi(list_parent LP, list_child LC, list_relasi &LR)
     cout << "============================================" << endl;
     cout << "Nama Artis : "; cin.ignore();
     getline(cin, namaartis);
-    cout << "Nama Film  : "; cin.ignore();
+    cout << "Nama Film  : ";
     getline(cin, namafilm);
     cout << namaartis << " " << namafilm;
     cout << endl;
