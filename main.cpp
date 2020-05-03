@@ -71,12 +71,12 @@ int main()
             system("CLS");
         } else if(pilih == 4){
             system("CLS");
-            deletedataartis(LP, LR);
+            deletedataartis(LP, LR, LC);
             system("PAUSE");
             system("CLS");
         } else if(pilih == 5){
             system("CLS");
-            deletedatafilm(LC, LR);
+            deletedatafilm(LC, LR, LP);
             system("PAUSE");
             system("CLS");
         } else if(pilih == 6){
