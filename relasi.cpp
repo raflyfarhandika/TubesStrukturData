@@ -75,18 +75,18 @@ void deleterelasi(list_relasi &LR, adr_relasi &P)
 {
     adr_relasi q = first(LR);
 
-    if(P == first(LR) && P == last(LR)){
+    if(first(LR) == P && last(LR) == P){
         first(LR) = NULL;
         last(LR) = NULL;
-    } else if(P == first(LR) && last(LR) == next(P)){
-        first(LR) = next(P);
+    } else if(P == first(LR)){
+        first(LR) = next(first(LR));
+        prev(first(LR)) = NULL;
         next(P) = NULL;
-        prev(last(LR)) = NULL;
-    } else if(P = last(LR)){   //delete last
+    } else if(P == last(LR)){
         last(LR) = prev(last(LR));
-        prev(P) = NULL;
         next(last(LR)) = NULL;
-    } else {
+        prev(P) = NULL;
+    } else{
         while(next(q) != P){
             q = next(q);
         }
@@ -96,6 +96,7 @@ void deleterelasi(list_relasi &LR, adr_relasi &P)
         prev(P) = NULL;
     }
 }               //delete berdasarkan data yang di cari
+
 adr_relasi find_relasi(list_relasi LR, list_parent LP, list_child LC, string nama_artis, string nama_film)
 {
     adr_relasi p = first(LR);
@@ -141,10 +142,9 @@ adr_relasi find_relasi(list_relasi LR, list_parent LP, list_child LC, string nam
 //    }
 //}
 
-void deletedataartis(list_parent &LP, list_relasi &LR)
+void deletedataartis(list_parent &LP, list_relasi &LR, list_child LC)
 {
     adr_parent p;
-    adr_relasi r = first(LR);
     string nama;
 
     cout << "========== Delete Data Artis ==========" << endl;
@@ -155,19 +155,24 @@ void deletedataartis(list_parent &LP, list_relasi &LR)
     p = find_artis(LP, nama);
     if(p == NULL){
         cout << "Data tidak ditemukan" << endl;
-    }else {
-        if(first(LR) == NULL){
+    }else if(p != NULL){
+        adr_relasi r = first(LR);
+        if(r == NULL){
             delete_artis(LP, p);
             cout << "Data Berhasil di Hapus" << endl;
         } else {
             while(next(r) != NULL){
                 if(infoArtis(artis(r)).nama == infoArtis(p).nama){
-                    deleterelasi(LR, r);
+                    r = next(r);
+                    adr_relasi found = prev(r);
+                    deleterelasi(LR, found);
+                    infoArtis(p).data--;
+                } else {
+                    r = next(r);
                 }
-                r = next(r);
             }
 
-            if(infoArtis(artis(r)).nama == infoArtis(p).nama){
+            if(infoArtis(artis(r)).nama == nama){
                 deleterelasi(LR, r);
             }
             delete_artis(LP, p);
@@ -176,10 +181,8 @@ void deletedataartis(list_parent &LP, list_relasi &LR)
     }
 }
 
-void deletedatafilm(list_child &LC, list_relasi &LR)
-{
+void deletedatafilm(list_child &LC, list_relasi &LR, list_parent LP){
     adr_child p;
-    adr_relasi r = first(LR);
     string namafilm;
 
     cout << "========== Delete Data Film ==========" << endl;
@@ -188,28 +191,27 @@ void deletedatafilm(list_child &LC, list_relasi &LR)
     cout << endl;
 
     p = find_film(LC, namafilm);
-    if(p == NULL)
-    {
+    if(p == NULL) {
         cout << "Data tidak ditemukan" << endl;
-    }else
-    {
-        if(first(LR) == NULL)
-        {
+    }else if(p != NULL) {
+        adr_relasi r = first(LR);
+        if(r == NULL) {
             delete_film(LC, p);
             cout << "Data Berhasil di Hapus" << endl;
-        } else
-        {
-            while(next(r) != NULL)
-            {
-                if(infoFilm(film(r)).nama == infoFilm(p).nama)
-                {
-                    deleterelasi(LR ,r);
+        } else {
+            while(next(r) != NULL){
+                if(infoFilm(film(r)).nama == infoFilm(p).nama){
+                    r = next(r);
+                    adr_relasi found = prev(r);
+                    infoArtis(artis(found)).data--;
+                    deleterelasi(LR, found);
+
+                } else {
+                    r = next(r);
                 }
-                r = next(r);
             }
 
-            if(infoFilm(film(r)).nama == infoFilm(p).nama)
-            {
+            if(infoFilm(film(r)).nama == namafilm){
                 deleterelasi(LR, r);
             }
 
@@ -230,6 +232,7 @@ void printInfo_relasi(list_relasi LR)
         while(p != NULL){
             cout << "Data ke- " << angka << " || Nama Artis : " << infoArtis(artis(p)).nama << " || Nama Film : " << infoFilm(film(p)).nama << endl;
             p = next(p);
+            angka++;
         }
         cout << "=====================================" << endl;
     }
@@ -237,7 +240,6 @@ void printInfo_relasi(list_relasi LR)
 
 void printInfo_relasiAll(list_relasi LR, list_parent LP, list_child LC)
 {
-    adr_relasi r = first(LR);
     adr_parent p = first(LP);
 
     if(first(LR) == NULL)
@@ -248,6 +250,7 @@ void printInfo_relasiAll(list_relasi LR, list_parent LP, list_child LC)
 
         while(p != NULL){
             cout << infoArtis(p).nama << " :" << endl;
+            adr_relasi r = first(LR);
             while(r != NULL){
                 if(infoArtis(artis(r)).nama == infoArtis(p).nama){
                     cout << infoFilm(film(r)).nama << " (" << infoFilm(film(r)).durasi << ")" << endl;
