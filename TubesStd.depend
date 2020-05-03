@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1588494248 source:d:\data\tubes!!!!\smt2\tubesstd\child.cpp
+	"L_Child.h"
+
+1588483823 source:d:\data\tubes!!!!\smt2\tubesstd\main.cpp
+	"L_Relasi.h"
+	"L_Parent.h"
+	"L_Child.h"
+	<iostream>
+
+1588491807 source:d:\data\tubes!!!!\smt2\tubesstd\parent.cpp
+	"L_Parent.h"
+
+1588494889 source:d:\data\tubes!!!!\smt2\tubesstd\relasi.cpp
+	"L_Relasi.h"
+
+1588427830 d:\data\tubes!!!!\smt2\tubesstd\l_parent.h
+	<iostream>
+	<stdlib.h>
+	<string>
+
+1588482394 d:\data\tubes!!!!\smt2\tubesstd\l_child.h
+	<iostream>
+	<stdlib.h>
+	<string>
+
+1588483828 d:\data\tubes!!!!\smt2\tubesstd\l_relasi.h
+	<iostream>
+	<stdlib.h>
+	<string>
+	"L_Parent.h"
+	"L_Child.h"
+
